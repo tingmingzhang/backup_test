@@ -113,7 +113,7 @@ for alpha3 in alphabets:
 							f_timeout.write('"'+url+'"'+','+'\n')
 							f_timeout.close()
 			
-			if (count_2 < 3 and random_number_1 > 3) or (count_2 < 2 and random_number_1 == 3) and flag == 1:
+			if ((count_2 < 3 and random_number_1 > 3) or (count_2 < 2 and random_number_1 == 3)) and flag == 1:
 				count_2 = 0
 				for alpha6 in alphabets2:
 					if count_2==random_number_1:
