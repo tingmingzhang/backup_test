@@ -113,56 +113,57 @@ for alpha3 in alphabets:
 							f_timeout.write('"'+url+'"'+','+'\n')
 							f_timeout.close()
 			
-			if count_2 < 3 and flag == 1:
+			if (count_2 < 3 and random_number_1 > 3) or (count_2 < 2 and random_number_1 == 3) and flag == 1:
 				count_2 = 0
-				if count_2==random_number_1:
-					break
-				count_1 = 0
-				
-				for number7 in numbers:
-					if count_1==random_number_2:
+				for alpha6 in alphabets2:
+					if count_2==random_number_1:
 						break
+					count_1 = 0
 					
-					suffix = name+alpha2+alpha3+alpha4+alpha5+alpha6+number7
-					url="https://m.llspace.com/v/"+suffix
-					try:
-						r=requests.get(url, timeout=8)
-						demo=r.text
-						h = etree.HTML(demo)
+					for number7 in numbers:
+						if count_1==random_number_2:
+							break
 						
-						name_coming = name + "coming.txt"
-						f_coming=open(name_coming,'a',encoding='utf-8')
-						f_coming.write(suffix+"   +++"+'\n')
-						f_coming.close()
-						
-						post_name = h.xpath('//span[contains(@class,"l-user-name")]//text()')
-						if post_name:
-							count_1 = count_1+1
-							count_2 = count_2+1
-							post_title = h.xpath('//h1[contains(@class,"l-title")]//text()')
-							post_text = h.xpath('//div[contains(@class,"l-text")]//text()')
-							post_date = h.xpath('//span[contains(@class,"l-date")]//text()')
+						suffix = name+alpha2+alpha3+alpha4+alpha5+alpha6+number7
+						url="https://m.llspace.com/v/"+suffix
+						try:
+							r=requests.get(url, timeout=8)
+							demo=r.text
+							h = etree.HTML(demo)
 							
-							name_success = name + "success.txt"
-							f_success=open(name_success,'a',encoding='utf-8')
-							f_success.write(suffix+'\n')
-							f_success.close()
+							name_coming = name + "coming.txt"
+							f_coming=open(name_coming,'a',encoding='utf-8')
+							f_coming.write(suffix+"   +++"+'\n')
+							f_coming.close()
 							
-							name_file = name + ".txt"
-							f=open(name_file,'a',encoding='utf-8')
-							f.write(suffix+'\n')
-							f.write(json.dumps(post_title,ensure_ascii=False) + '\n') #必须格式化数据
-							f.write(json.dumps(post_text,ensure_ascii=False) + '\n')
-							f.write(json.dumps(post_name,ensure_ascii=False) + '\n')
-							f.write(json.dumps(post_date,ensure_ascii=False) + '\n')
-							f.write('\n')
-							f.write('\n')
-							f.close()
-					except requests.exceptions.RequestException:
-						name_timeout = name + "timeout.txt"
-						f_timeout=open(name_timeout,'a',encoding='utf-8')
-						f_timeout.write(suffix+'\n')
-						f_timeout.close()
+							post_name = h.xpath('//span[contains(@class,"l-user-name")]//text()')
+							if post_name:
+								count_1 = count_1+1
+								count_2 = count_2+1
+								post_title = h.xpath('//h1[contains(@class,"l-title")]//text()')
+								post_text = h.xpath('//div[contains(@class,"l-text")]//text()')
+								post_date = h.xpath('//span[contains(@class,"l-date")]//text()')
+								
+								name_success = name + "success.txt"
+								f_success=open(name_success,'a',encoding='utf-8')
+								f_success.write(suffix+'\n')
+								f_success.close()
+								
+								name_file = name + ".txt"
+								f=open(name_file,'a',encoding='utf-8')
+								f.write(suffix+'\n')
+								f.write(json.dumps(post_title,ensure_ascii=False) + '\n') #必须格式化数据
+								f.write(json.dumps(post_text,ensure_ascii=False) + '\n')
+								f.write(json.dumps(post_name,ensure_ascii=False) + '\n')
+								f.write(json.dumps(post_date,ensure_ascii=False) + '\n')
+								f.write('\n')
+								f.write('\n')
+								f.close()
+						except requests.exceptions.RequestException:
+							name_timeout = name + "timeout.txt"
+							f_timeout=open(name_timeout,'a',encoding='utf-8')
+							f_timeout.write(suffix+'\n')
+							f_timeout.close()
 
 #print(post_title)
 #print(post_text)
