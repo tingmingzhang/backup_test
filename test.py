@@ -62,8 +62,8 @@ for alpha3 in alphabets:
 					if random_number_letter > 1:
 						continue
 					suffix = name+alpha3+alpha4+alpha5+alpha6+number7
-					compare = name + "000d385"
-					if(suffix==compare):
+					
+					if(alpha5=='d'):
 						flag=1
 					if flag==1:
 						url="https://m.llspace.com/v/"+suffix
@@ -105,7 +105,7 @@ for alpha3 in alphabets:
 							f_timeout=open(name_timeout,'a',encoding='utf-8')
 							f_timeout.write('"'+url+'"'+','+'\n')
 							f_timeout.close()
-			if count_2 < 2:
+			if count_2 < 2 and flag == 1:
 				count_2 = 0
 				if count_2==random_number_1:
 					break
