@@ -27,7 +27,7 @@ for alpha3 in alphabets:
 	for alpha4 in alphabets:
 		for alpha5 in alphabets:
 			count_2 = 0
-			random_number_1 = random.randint(3,5)
+			random_number_1 = random.randint(4,6)
 
 			for alpha6 in alphabets2:
 				if count_2==random_number_1:
@@ -40,33 +40,33 @@ for alpha3 in alphabets:
 				else:
 					random_number_2 = 2
 
-				if random_number_1 == 3:
+				if random_number_1 == 4:
 					if count_2 < 3:
 						random_number_letter = random.randint(1,4)
 					else:
-						random_number_letter = random.randint(1,3)	
-					if random_number_letter > 2:
+						random_number_letter = random.randint(2,4)
+					if random_number_letter > 3:
 						continue
-				elif random_number_1 == 4:
+				elif random_number_1 == 5:
 					if count_2 < 3:
-						random_number_letter = random.randint(1,6)
-					else:
 						random_number_letter = random.randint(1,5)
+					else:
+						random_number_letter = random.randint(2,5)
 					if random_number_letter > 4:
 						continue	
 				else:
-					if count_2 < 3:
-						random_number_letter = random.randint(1,8)
+					if count_2 < 4:
+						random_number_letter = random.randint(1,9)
 					else:
-						random_number_letter = random.randint(1,7)
-					if random_number_letter > 6:
+						random_number_letter = random.randint(2,9)
+					if random_number_letter > 8:
 						continue
 				
 				for number7 in numbers:
 					if count_1==random_number_2:
 						break
-					random_number_num = random.randint(1,5)	
-					if random_number_num > 3:
+					random_number_num = random.randint(1,3)	
+					if random_number_num > 2:
 						continue
 					suffix = name+alpha2+alpha3+alpha4+alpha5+alpha6+number7
 					
@@ -114,56 +114,7 @@ for alpha3 in alphabets:
 							f_timeout.close()
 			
 			if ((count_2 < 3 and random_number_1 > 3) or (count_2 < 2 and random_number_1 == 3)) and flag == 1:
-				count_2 = 0
-				for alpha6 in alphabets2:
-					if count_2==random_number_1:
-						break
-					count_1 = 0
-					
-					for number7 in numbers:
-						if count_1==random_number_2:
-							break
-						
-						suffix = name+alpha2+alpha3+alpha4+alpha5+alpha6+number7
-						url="https://m.llspace.com/v/"+suffix
-						try:
-							r=requests.get(url, timeout=8)
-							demo=r.text
-							h = etree.HTML(demo)
-							
-							name_coming = name + "coming.txt"
-							f_coming=open(name_coming,'a',encoding='utf-8')
-							f_coming.write(suffix+"   +++"+'\n')
-							f_coming.close()
-							
-							post_name = h.xpath('//span[contains(@class,"l-user-name")]//text()')
-							if post_name:
-								count_1 = count_1+1
-								count_2 = count_2+1
-								post_title = h.xpath('//h1[contains(@class,"l-title")]//text()')
-								post_text = h.xpath('//div[contains(@class,"l-text")]//text()')
-								post_date = h.xpath('//span[contains(@class,"l-date")]//text()')
-								
-								name_success = name + "success.txt"
-								f_success=open(name_success,'a',encoding='utf-8')
-								f_success.write(suffix+'\n')
-								f_success.close()
-								
-								name_file = name + ".txt"
-								f=open(name_file,'a',encoding='utf-8')
-								f.write(suffix+'\n')
-								f.write(json.dumps(post_title,ensure_ascii=False) + '\n') #必须格式化数据
-								f.write(json.dumps(post_text,ensure_ascii=False) + '\n')
-								f.write(json.dumps(post_name,ensure_ascii=False) + '\n')
-								f.write(json.dumps(post_date,ensure_ascii=False) + '\n')
-								f.write('\n')
-								f.write('\n')
-								f.close()
-						except requests.exceptions.RequestException:
-							name_timeout = name + "timeout.txt"
-							f_timeout=open(name_timeout,'a',encoding='utf-8')
-							f_timeout.write(suffix+'\n')
-							f_timeout.close()
+
 
 #print(post_title)
 #print(post_text)
