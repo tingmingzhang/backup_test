@@ -27,7 +27,7 @@ for alpha3 in alphabets:
 	for alpha4 in alphabets:
 		for alpha5 in alphabets:
 			count_2 = 0
-			random_number_1 = random.randint(4,6)
+			random_number_1 = random.randint(3,6)
 
 			for alpha6 in alphabets2:
 				if count_2==random_number_1:
@@ -112,9 +112,13 @@ for alpha3 in alphabets:
 							f_timeout=open(name_timeout,'a',encoding='utf-8')
 							f_timeout.write('"'+url+'"'+','+'\n')
 							f_timeout.close()
-			
-			if ((count_2 < 3 and random_number_1 > 3) or (count_2 < 2 and random_number_1 == 3)) and flag == 1:
-
+			name_prob = name + "prob.txt"
+			f_prob=open(name_prob,'a',encoding='utf-8')
+			f_prob.write('1 or 2  '+random_number_2+'\n')
+			f_prob.write('3 or 6  '+random_number_1+'\n')
+			f_prob.write('fact  '+count_2+'\n')
+			f_prob.write('--------------------'+'\n')	
+			f_prob.close()
 
 #print(post_title)
 #print(post_text)
