@@ -27,7 +27,14 @@ for alpha3 in alphabets:
 	for alpha4 in alphabets:
 		for alpha5 in alphabets:
 			count_2 = 0
-			random_number_1 = random.randint(3,6)
+			random_temp = random.randint(1,5)
+			random_number_1 = 0
+			if random_temp < 2:
+				random_number_1 = 3
+			elif random_temp < 4:
+				random_number_1 = 4
+			else: 
+				random_number_1 = 5
 
 			for alpha6 in alphabets2:
 				if count_2==random_number_1:
@@ -40,34 +47,36 @@ for alpha3 in alphabets:
 				else:
 					random_number_2 = 2
 
-				if random_number_1 == 4:
+				if random_number_1 == 3:
 					if count_2 < 3:
 						random_number_letter = random.randint(1,4)
 					else:
 						random_number_letter = random.randint(2,4)
 					if random_number_letter > 3:
 						continue
-				elif random_number_1 == 5:
+				elif random_number_1 == 4:
 					if count_2 < 3:
-						random_number_letter = random.randint(1,5)
+						random_number_letter = random.randint(0,4)
 					else:
-						random_number_letter = random.randint(2,5)
+						random_number_letter = random.randint(1,4)
 					if random_number_letter > 4:
 						continue	
 				else:
 					if count_2 < 4:
 						random_number_letter = random.randint(1,9)
 					else:
-						random_number_letter = random.randint(2,9)
+						random_number_letter = random.randint(3,9)
 					if random_number_letter > 8:
 						continue
-				
+				random_start = random.randint(1,5)
+					
 				for number7 in numbers:
 					if count_1==random_number_2:
 						break
-					random_number_num = random.randint(1,3)	
-					if random_number_num > 2:
-						continue
+					if random_start < 5:	
+						random_number_num = random.randint(1,4)
+						if random_number_num > 3:
+							continue
 					suffix = name+alpha2+alpha3+alpha4+alpha5+alpha6+number7
 					
 					if(alpha5=='e'):
@@ -112,12 +121,16 @@ for alpha3 in alphabets:
 							f_timeout=open(name_timeout,'a',encoding='utf-8')
 							f_timeout.write('"'+url+'"'+','+'\n')
 							f_timeout.close()
+			r_str2 = str(random_number_2)
+			r_str1 = str(random_number_1)
+			c_str2 = str(count_2)
 			name_prob = name + "prob.txt"
 			f_prob=open(name_prob,'a',encoding='utf-8')
-			f_prob.write('1 or 2  '+random_number_2+'\n')
-			f_prob.write('3 or 6  '+random_number_1+'\n')
-			f_prob.write('fact  '+count_2+'\n')
-			f_prob.write('--------------------'+'\n')	
+			f_prob.write(suffix+'\n')
+			f_prob.write("#"+r_str2+'\n')
+			f_prob.write("@"+r_str1+'\n')
+			f_prob.write("$"+c_str2+'\n')
+			f_prob.write("--------------------"+'\n')	
 			f_prob.close()
 
 #print(post_title)

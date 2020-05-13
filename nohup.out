@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "test.py", line 117, in <module>
+    f_prob.write('1 or 2  '+random_number_2+'\n')
+TypeError: Can't convert 'int' object to str implicitly
+Traceback (most recent call last):
+  File "test.py", line 117, in <module>
+    f_prob.write("1 or 2  "+random_number_2+'\n')
+TypeError: Can't convert 'int' object to str implicitly
